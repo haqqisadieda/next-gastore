@@ -3,6 +3,7 @@ import styles from './Login.module.scss';
 import { useRouter } from 'next/router';
 import { FormEvent, useState } from 'react';
 import { signIn } from 'next-auth/react';
+import { redirect } from 'next/dist/server/api-utils';
 const LoginView = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
@@ -64,6 +65,20 @@ const LoginView = () => {
                         className={styles.login__form__button}>
                         {isLoading ? 'Loading...' : 'Login'}
                     </button>
+                    <hr className={styles.login__form__devider} />
+                    <div className={styles.login__form__other}>
+                        <button
+                            type='button'
+                            onClick={() =>
+                                signIn('google', {
+                                    callbackUrl,
+                                    redirect: false,
+                                })
+                            }
+                            className={styles.login__form__other__button}>
+                            <i className='bx bxl-google'></i> Login With Google
+                        </button>
+                    </div>
                 </form>
             </div>
             <p className={styles.login__link}>
