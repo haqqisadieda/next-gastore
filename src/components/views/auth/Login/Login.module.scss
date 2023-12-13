@@ -35,12 +35,38 @@
             background-color: #000;
             color: #fff;
             width: 100%;
-            padding: 10px;
+            padding: 15px;
             border: none;
             cursor: pointer;
             &:hover {
                 background-color: #000;
                 color: #eee;
+            }
+        }
+        &__devider {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        &__other {
+            width: 100%;
+            &__button {
+                background-color: #000;
+                color: #fff;
+                width: 100%;
+                padding: 15px;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+                &:hover {
+                    background-color: #000;
+                    color: #eee;
+                }
+                i {
+                    font-size: 24px;
+                }
             }
         }
     }
