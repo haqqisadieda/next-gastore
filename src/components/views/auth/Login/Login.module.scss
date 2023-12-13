@@ -39,8 +39,8 @@
             border: none;
             cursor: pointer;
             &:hover {
-                background-color: #000;
-                color: #eee;
+                background-color: #fff;
+                color: #000;
             }
         }
         &__devider {
@@ -61,8 +61,8 @@
                 align-items: center;
                 gap: 5px;
                 &:hover {
-                    background-color: #000;
-                    color: #eee;
+                    background-color: #fff;
+                    color: #000;
                 }
                 i {
                     font-size: 24px;
