@@ -1,0 +1,16 @@
+.button {
+  padding: 15px;
+  border: none;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    background-color: #fff;
+    color: #000;
+  }
+}
+
+.primary {
+  background-color: #000;
+  color: #fff;
+}
