@@ -1,10 +1,10 @@
-import Link from "next/link";
 import styles from "./Login.module.scss";
 import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
 import { signIn } from "next-auth/react";
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
+import AuthLayout from "@/components/layouts/AuthLayout";
 const LoginView = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -38,39 +38,34 @@ const LoginView = () => {
     }
   };
   return (
-    <div className={styles.login}>
-      <h1 className={styles.login__title}>Login</h1>
-      {error && <p className={styles.login__error}>{error}</p>}
-      <div className={styles.login__form}>
-        <form onSubmit={handleSubmit}>
-          <div className={styles.login__form__item}>
-            <Input label="Email" name="email" type="email" />
-            <Input label="Password" name="password" type="password" />
-          </div>
+    <AuthLayout
+      error={error}
+      title="Login"
+      link="/auth/register"
+      linkText="Don't have an account? Sign Up"
+    >
+      <form onSubmit={handleSubmit}>
+        <Input label="Email" name="email" type="email" />
+        <Input label="Password" name="password" type="password" />
+        <Button
+          type="submit"
+          variant="primary"
+          className={styles.login__button}
+        >
+          {isLoading ? "Loading..." : "Login"}
+        </Button>
+        <hr className={styles.login__devider} />
+        <div className={styles.login__other}>
           <Button
-            type="submit"
-            variant="primary"
-            className={styles.login__form__button}
+            type="button"
+            className={styles.login__other__button}
+            onClick={() => signIn("google", { callbackUrl, redirect: false })}
           >
-            {isLoading ? "Loading..." : "Login"}
+            <i className="bx bxl-google"></i> Login With Google
           </Button>
-          <hr className={styles.login__form__devider} />
-          <div className={styles.login__form__other}>
-            <Button
-              type="button"
-              className={styles.login__form__other__button}
-              onClick={() => signIn("google", { callbackUrl, redirect: false })}
-            >
-              <i className="bx bxl-google"></i> Login With Google
-            </Button>
-          </div>
-        </form>
-      </div>
-      <p className={styles.login__link}>
-        Don{"'"}t have an account? Sign Up{" "}
-        <Link href={"/auth/register"}>here.</Link>
-      </p>
-    </div>
+        </div>
+      </form>
+    </AuthLayout>
   );
 };
 
