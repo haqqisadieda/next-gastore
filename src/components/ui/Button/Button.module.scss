@@ -1,16 +1,28 @@
 .button {
-  padding: 15px;
+  padding: 15px 30px;
   border: none;
+  display: flex;
   cursor: pointer;
   justify-content: center;
   align-items: center;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.primary {
+  background-color: #000;
+  color: #fff;
   &:hover {
     background-color: #fff;
     color: #000;
   }
 }
 
-.primary {
-  background-color: #000;
-  color: #fff;
+.secondary {
+  background-color: #fff;
+  color: #000;
+  &:hover {
+    background-color: #000;
+    color: #fff;
+  }
 }
