@@ -5,10 +5,12 @@ type PropTypes = {
   name: string;
   type: string;
   placeholder?: string;
+  defaultValue?: string;
+  disabled?: boolean;
 };
 
 const Input = (props: PropTypes) => {
-  const { label, name, type, placeholder } = props;
+  const { label, name, type, placeholder, defaultValue, disabled } = props;
   return (
     <div className={styles.container}>
       {label && <label htmlFor={name}>{label}</label>}
@@ -18,6 +20,8 @@ const Input = (props: PropTypes) => {
         type={type}
         placeholder={placeholder}
         className={styles.container__input}
+        defaultValue={defaultValue}
+        disabled={disabled}
       />
     </div>
   );

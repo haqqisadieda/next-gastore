@@ -28,6 +28,21 @@
 
     &__action {
       display: flex;
+      gap: 10px;
+      &__edit {
+        background-color: #03989e;
+        padding: 15px;
+        i {
+          font-size: 20px;
+        }
+      }
+      &__delete {
+        background-color: #ff6363;
+        padding: 15px;
+        i {
+          font-size: 20px;
+        }
+      }
     }
   }
 }

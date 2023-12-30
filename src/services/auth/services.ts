@@ -54,6 +54,10 @@ export async function loginWithGoogle(
     data.password = "";
     data.created_at = new Date();
     data.updated_at = new Date();
-    await addData("users", userData, (result: boolean) => callback(result));
+    await addData("users", data, (result: boolean) => {
+      if (result) {
+        callback(data);
+      }
+    });
   }
 }
