@@ -5,6 +5,7 @@ import { signIn } from "next-auth/react";
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 import AuthLayout from "@/components/layouts/AuthLayout";
+import userServices from "@/services/user";
 const LoginView = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -23,7 +24,6 @@ const LoginView = () => {
         password: form.password.value,
         callbackUrl: Array.isArray(callbackUrl) ? callbackUrl[0] : callbackUrl,
       });
-      console.log(res);
       if (!res?.error) {
         setIsLoading(false);
         form.reset();
