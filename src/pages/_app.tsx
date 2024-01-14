@@ -10,7 +10,7 @@ const lato = Lato({
   weight: ["100", "300", "400", "700", "900"],
 });
 
-const disableNavbar = ["auth", "admin"];
+const disableNavbar = ["auth", "admin", "member"];
 
 export default function App({
   Component,
