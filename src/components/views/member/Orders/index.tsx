@@ -4,7 +4,7 @@ const OrdersMemberView = () => {
   return (
     <MemberLayout>
       <div>
-        <div>Orders Page</div>
+        <div>Member Orders Page</div>
       </div>
     </MemberLayout>
   );
