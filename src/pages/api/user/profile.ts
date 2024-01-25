@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import jwt from "jsonwebtoken";
 import { retrieveDataById, updateData } from "@/lib/firebase/service";
+import { compare, hash } from "bcrypt";
 
 export default async function handler(
   req: NextApiRequest,
@@ -43,7 +44,6 @@ export default async function handler(
       );
     }
   } else if (req.method === "PUT") {
-    const { user }: any = req.query;
     const { data } = req.body;
     const token = req.headers.authorization?.split(" ")[1] || "";
     jwt.verify(
@@ -51,7 +51,25 @@ export default async function handler(
       process.env.NEXTAUTH_SECRET || "",
       async (err: any, decoded: any) => {
         if (decoded) {
-          await updateData("users", user[0], data, (result: boolean) => {
+          if (data.password) {
+            const passwordConfirm = await compare(
+              data.oldPassword,
+              data.encryptedPassword,
+            );
+            if (!passwordConfirm) {
+              return res.status(400).json({
+                status: false,
+                statusCode: 400,
+                message: "Invalid Password",
+              });
+            }
+            delete data.oldPassword;
+            delete data.encryptedPassword;
+
+            data.password = await hash(data.password, 10);
+          }
+
+          await updateData("users", decoded.id, data, (result: boolean) => {
             if (result) {
               res.status(200).json({
                 status: true,
